@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BottleRush — Premium Alcohol Delivery</title>
+  <meta name="description" content="Order beer, wine, whisky & more. Delivered to your door in 30 minutes." />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍺</text></svg>" />
+</head>
+<body>
+
+<!-- ── Navbar ── -->
+<nav class="navbar">
+  <a href="/" class="nav-logo">Bottle<span>Rush</span></a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/menu">Menu</a></li>
+    <li><a href="/cart">Cart</a></li>
+  </ul>
+  <a href="/cart" class="nav-cart">
+    🛒 Cart
+    <span class="cart-badge" id="cart-badge">0</span>
+  </a>
+  <button class="nav-toggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="page">
+
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <span class="hero-eyebrow fade-in">⚡ 30-minute delivery</span>
+    <h1 class="fade-in fade-in-delay-1">Your Favourite<br/>Drinks, Delivered.</h1>
+    <p class="fade-in fade-in-delay-2">
+      Beer, wine, whisky, vodka — curated selection from top brands.
+      Track your order live, delivered straight to your door.
+    </p>
+    <div class="hero-actions fade-in fade-in-delay-3">
+      <a href="/menu" class="btn btn-primary">🍺 Browse Menu</a>
+      <a href="#how-it-works" class="btn btn-outline">How it works</a>
+    </div>
+  </section>
+
+  <!-- ── Categories ── -->
+  <section class="categories" id="categories">
+    <div class="section-header">
+      <h2 class="section-title">Shop by Category</h2>
+    </div>
+    <div class="category-grid">
+      <a href="/menu?category=beer" class="category-card">
+        <span class="category-emoji">🍺</span>
+        <div class="category-name">Beer</div>
+        <div class="category-count">Lagers, Craft & more</div>
+      </a>
+      <a href="/menu?category=wine" class="category-card">
+        <span class="category-emoji">🍷</span>
+        <div class="category-name">Wine</div>
+        <div class="category-count">Red, White, Sparkling</div>
+      </a>
+      <a href="/menu?category=whisky" class="category-card">
+        <span class="category-emoji">🥃</span>
+        <div class="category-name">Whisky</div>
+        <div class="category-count">Scotch, Blended & more</div>
+      </a>
+      <a href="/menu?category=vodka" class="category-card">
+        <span class="category-emoji">🍸</span>
+        <div class="category-name">Vodka</div>
+        <div class="category-count">Premium & Imported</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── How it works ── -->
+  <section style="padding: clamp(3rem,6vw,5rem) clamp(1rem,5vw,3rem); background: var(--bg);" id="how-it-works">
+    <div class="section-header" style="margin-bottom:2.5rem">
+      <h2 class="section-title">How BottleRush Works</h2>
+    </div>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:1.5rem; max-width:900px;">
+      <div style="text-align:center; padding:2rem 1rem;">
+        <div style="font-size:3rem; margin-bottom:1rem;">📍</div>
+        <h3 style="font-family:var(--font-display); color:var(--gold); margin-bottom:.5rem;">Share Location</h3>
+        <p style="color:var(--text-muted); font-size:.9rem;">Allow GPS or pin your address on the map. We'll find the nearest store.</p>
+      </div>
+      <div style="text-align:center; padding:2rem 1rem;">
+        <div style="font-size:3rem; margin-bottom:1rem;">🛒</div>
+        <h3 style="font-family:var(--font-display); color:var(--gold); margin-bottom:.5rem;">Pick Your Drinks</h3>
+        <p style="color:var(--text-muted); font-size:.9rem;">Browse our catalogue and add your favourites to the cart.</p>
+      </div>
+      <div style="text-align:center; padding:2rem 1rem;">
+        <div style="font-size:3rem; margin-bottom:1rem;">🚀</div>
+        <h3 style="font-family:var(--font-display); color:var(--gold); margin-bottom:.5rem;">Fast Delivery</h3>
+        <p style="color:var(--text-muted); font-size:.9rem;">Your order is packed and dispatched in minutes. Delivered in ~30 min.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer style="padding:2rem clamp(1rem,5vw,3rem); border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+    <div style="font-family:var(--font-display); color:var(--gold); font-weight:700; font-size:1.1rem;">BottleRush</div>
+    <p style="color:var(--text-dim); font-size:.8rem;">© 2026 BottleRush. Drink responsibly. 21+ only.</p>
+    <div style="display:flex; gap:1.5rem;">
+      <a href="/menu" style="color:var(--text-muted); font-size:.85rem;">Menu</a>
+      <a href="/cart" style="color:var(--text-muted); font-size:.85rem;">Cart</a>
+    </div>
+  </footer>
+
+</div>
+
+<script src="/js/app.js"></script>
+</body>
+</html>

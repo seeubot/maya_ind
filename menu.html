@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu — BottleRush</title>
+  <meta name="description" content="Browse our full catalogue of beers, wines, whiskies and spirits." />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍺</text></svg>" />
+</head>
+<body>
+
+<!-- ── Navbar ── -->
+<nav class="navbar">
+  <a href="/" class="nav-logo">Bottle<span>Rush</span></a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/menu">Menu</a></li>
+    <li><a href="/cart">Cart</a></li>
+  </ul>
+  <a href="/cart" class="nav-cart">
+    🛒 Cart
+    <span class="cart-badge" id="cart-badge">0</span>
+  </a>
+  <button class="nav-toggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="page">
+  <section class="products-section">
+
+    <!-- Page Header -->
+    <div style="margin-bottom:2rem;">
+      <h1 style="font-family:var(--font-display); font-size:clamp(1.8rem,5vw,2.8rem); font-weight:900;">
+        Our Menu
+      </h1>
+      <p style="color:var(--text-muted); margin-top:.4rem;">
+        Premium selection — curated for the discerning drinker.
+      </p>
+    </div>
+
+    <!-- Filter Chips -->
+    <div class="filter-bar">
+      <button class="filter-chip active" data-filter="all">All</button>
+      <button class="filter-chip" data-filter="beer">🍺 Beer</button>
+      <button class="filter-chip" data-filter="wine">🍷 Wine</button>
+      <button class="filter-chip" data-filter="whisky">🥃 Whisky</button>
+      <button class="filter-chip" data-filter="vodka">🍸 Vodka</button>
+    </div>
+
+    <!-- Min order notice -->
+    <div style="
+      background:rgba(201,151,58,0.07); border:1px solid var(--gold-dim);
+      border-radius:var(--radius); padding:.7rem 1.1rem;
+      font-size:.82rem; color:var(--gold); margin-bottom:1.5rem;
+      display:flex; align-items:center; gap:.5rem;
+    ">
+      🛵 Free delivery on orders above ₹500 &nbsp;·&nbsp; Min. order ₹299
+    </div>
+
+    <!-- Products Grid -->
+    <div class="products-grid" id="products-grid">
+      <!-- Loaded by menu.js -->
+    </div>
+
+    <!-- Sticky Cart Footer (mobile) -->
+    <div id="cart-footer" style="
+      display:none;
+      position:fixed; bottom:0; left:0; right:0; z-index:50;
+      background:var(--bg2); border-top:1px solid var(--border);
+      padding:1rem clamp(1rem,4vw,2rem);
+      flex-direction:row; align-items:center; justify-content:space-between;
+      gap:1rem;
+    ">
+      <div>
+        <div style="font-size:.8rem; color:var(--text-muted);" id="footer-count">0 items</div>
+        <div style="font-family:var(--font-display); font-size:1.2rem; color:var(--gold);" id="footer-total">₹0</div>
+      </div>
+      <a href="/cart" class="btn btn-primary btn-sm">View Cart →</a>
+    </div>
+
+  </section>
+</div>
+
+<script src="/js/app.js"></script>
+<script src="/js/menu.js"></script>
+<script>
+  // Read category from URL query param
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const cat = params.get('category');
+    if (cat) {
+      // Wait for products to load then apply filter
+      const interval = setInterval(() => {
+        if (window.allProducts && window.allProducts.length) {
+          clearInterval(interval);
+          filterProducts(cat);
+        }
+      }, 100);
+    }
+
+    // Cart footer (mobile)
+    function updateCartFooter() {
+      const footer = document.getElementById('cart-footer');
+      const count = Cart.count();
+      if (count > 0) {
+        footer.style.display = 'flex';
+        document.getElementById('footer-count').textContent = `${count} item${count > 1 ? 's' : ''}`;
+        document.getElementById('footer-total').textContent = formatPrice(Cart.total());
+      } else {
+        footer.style.display = 'none';
+      }
+    }
+
+    // Expose allProducts globally for filter from URL
+    window.allProducts = [];
+    const origLoad = loadProducts;
+    updateCartFooter();
+    setInterval(updateCartFooter, 500);
+  });
+</script>
+</body>
+</html>
